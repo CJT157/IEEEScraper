@@ -34,7 +34,7 @@ def get_movie_info(URL):
     # Gets and formats the release date
     release = genres_html[-1].text
     release = release.split('(')[0]
-    release = dp.parse(release)
+    release = dp.parse(release).strftime("%Y-%m-%d")
 
     # Gets director of movie
     directors_html = soup.find('div', class_="credit_summary_item").findAll('a')
@@ -52,10 +52,7 @@ def get_movie_info(URL):
     rating = rating.replace('\n', '')
     rating = float(rating)
 
-    
     # Gets stars of movie
-    # TODO: Figure out how to get a specific div from a list that use the same class name
-  
     stars_html = soup.find('div', class_='plot_summary').find_all('a')
     for i in stars_html[-4:-1]:
         stars.append(i.text)
@@ -75,10 +72,14 @@ def get_movie_info(URL):
     print(poster)
     print('----------------------------------------------------------------------------------------')
 
-
+# Prompts user for a movie link
 print('Welcome to the IMDB Scraper!')
 URL = input('Please enter a IMDB Movie URL: ')
 
+# Calls method to get info about the movie
 get_movie_info(URL)
 
-# https://www.imdb.com/title/tt1130884/?ref_=fn_al_tt_1
+# Movies to test
+# Shutter Island: https://www.imdb.com/title/tt1130884/?ref_=fn_al_tt_1
+# Avengers Endgame: https://www.imdb.com/title/tt4154796/?ref_=nv_sr_srsg_0
+# Intersteller: https://www.imdb.com/title/tt0816692/?ref_=nv_sr_srsg_3
