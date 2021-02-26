@@ -9,7 +9,8 @@ def get_movie_info(URL):
     release =''
     genres_html = []
     genres = []
-    director = ''
+    directors_html = []
+    directors = []
     plot = ''
     rating = ''
     stars_html = []
@@ -36,7 +37,9 @@ def get_movie_info(URL):
     release = dp.parse(release)
 
     # Gets director of movie
-    director = soup.find('div', class_="credit_summary_item").find('a').text
+    directors_html = soup.find('div', class_="credit_summary_item").findAll('a')
+    for i in directors_html:
+        directors.append(i.text)
 
     # Gets the plot of movie
     plot = soup.find('div', class_="summary_text").text
@@ -49,29 +52,29 @@ def get_movie_info(URL):
     rating = rating.replace('\n', '')
     rating = float(rating)
 
-    """
+    
     # Gets stars of movie
     # TODO: Figure out how to get a specific div from a list that use the same class name
-    stars_html = soup.find('div', class_='credit_summary_item').find_all('a')
-    for i in stars_html[:-1]:
+  
+    stars_html = soup.find('div', class_='plot_summary').find_all('a')
+    for i in stars_html[-4:-1]:
         stars.append(i.text)
-    """
-
+    
     # Gets poster of the movie
     poster = soup.find('div', class_='poster').find('img')['src']
     
     # Prints movie info
-    print('-----------------------------------------------------------------')
+    print('----------------------------------------------------------------------------------------')
     print(title)
     print(release)
     print(genres)
-    print(director)
+    print(directors)
     print(plot)
     print(rating)
-    # print(stars)
+    print(stars)
     print(poster)
-    print('-----------------------------------------------------------------')
-    
+    print('----------------------------------------------------------------------------------------')
+
 
 print('Welcome to the IMDB Scraper!')
 URL = input('Please enter a IMDB Movie URL: ')
