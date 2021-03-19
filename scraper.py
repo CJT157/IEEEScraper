@@ -64,7 +64,7 @@ def get_movie_info(URL):
     poster = soup.find('div', class_='poster').find('img')['src']
     
     # Prints movie info
-    print('----------------------------------------------------------------------------------------')
+    print('---------------------------------------------------------------------------------------------------------------------')
     print(title)
     print(release)
     print(genres)
@@ -73,14 +73,26 @@ def get_movie_info(URL):
     print(rating)
     print(stars)
     print(poster)
-    print('----------------------------------------------------------------------------------------')
+    print('---------------------------------------------------------------------------------------------------------------------')
 
 # Prompts user for a movie link
 print('Welcome to the IMDB Scraper!')
-URL = input('Please enter a IMDB Movie URL: ')
+URLs = []
+movie = ''
 
-# Calls method to get info about the movie
-get_movie_info(URL)
+print('Enter the IMDB URL(s) of your movies. Enter "exit" to finish: ')
+while(movie != 'exit'):
+    movie = input()
+    
+    if movie == 'exit':
+        break
+
+    URLs.append(movie)
+
+# Calls method to get info about the movie(s)
+for links in URLs:
+    get_movie_info(links)
+
 
 # Movies to test
 # Shutter Island: https://www.imdb.com/title/tt1130884/?ref_=fn_al_tt_1
