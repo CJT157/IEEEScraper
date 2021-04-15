@@ -8,6 +8,7 @@ import javafx.stage.Stage;
 
 /* 	To run:
 *		cd into applications (type 'cd application' into terminal)
+*		paste 'javac --module-path ../javafx-sdk-15.0.1/lib --add-modules javafx.controls,javafx.fxml GUI.java' and press enter
 *		paste 'java --module-path ../javafx-sdk-15.0.1/lib --add-modules javafx.controls,javafx.fxml GUI.java' and press enter
 *		there ya go
 */
