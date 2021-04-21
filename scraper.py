@@ -25,7 +25,12 @@ def get_movie_info(URL):
 
     # Gets title of movie
     title = soup.find('div', class_='title_wrapper').find('h1').text
-    title = title.split('\\')
+    title = title.split()
+    actual_title = ""
+    for title_word in title:
+        actual_title += title_word + " "
+    title = actual_title.strip()
+    print(title)
 
     plot = soup.find('div', class_="plot_summary")
     director = plot.find('div', class_="credit_summary_item").find('a')
@@ -145,7 +150,7 @@ for links in top_movies:
     movie_info.append(get_movie_info(links))
 
 
-with open('top_movies.txt', 'w') as filewriter:
+with open('application/top_movies.txt', 'w') as filewriter:
     for link in movie_info:
         filewriter.write('%s\n' % link)
 
