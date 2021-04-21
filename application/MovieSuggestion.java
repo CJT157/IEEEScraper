@@ -20,7 +20,7 @@ public class MovieSuggestion {
     private MovieSuggestion() {}
 
     public void loadMovieInfo() throws FileNotFoundException {
-        File movieList = new File("movieList.txt");
+        File movieList = new File("top_movie.txt");
         Scanner movieScanner = new Scanner(movieList);
         while (movieScanner.hasNextLine()) {
             //read stuff here
