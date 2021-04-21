@@ -2,6 +2,7 @@ from bs4 import BeautifulSoup
 import requests
 import datetime
 import dateparser as dp
+import re
 
 def get_movie_info(URL):
     # Variables
@@ -16,13 +17,15 @@ def get_movie_info(URL):
     stars_html = []
     stars = []
     poster = ''
+    movie_info = []
 
     # Gets info for movie from IMDB
     page = requests.get(URL)
     soup = BeautifulSoup(page.content, features="html.parser")
 
     # Gets title of movie
-    title = soup.find('h1', class_='').text
+    title = soup.find('div', class_='title_wrapper').find('h1').text
+    title = title.split('\\')
 
     plot = soup.find('div', class_="plot_summary")
     director = plot.find('div', class_="credit_summary_item").find('a')
@@ -63,6 +66,7 @@ def get_movie_info(URL):
     # Gets poster of the movie
     poster = soup.find('div', class_='poster').find('img')['src']
     
+    """
     # Prints movie info
     print('---------------------------------------------------------------------------------------------------------------------')
     print(title)
@@ -74,12 +78,59 @@ def get_movie_info(URL):
     print(stars)
     print(poster)
     print('---------------------------------------------------------------------------------------------------------------------')
+    """
+
+    movie_info.append(title)
+    movie_info.append(release)
+    movie_info.append(genres)
+    movie_info.append(directors)
+    movie_info.append(plot)
+    movie_info.append(rating)
+    movie_info.append(stars)
+    movie_info.append(poster)
+
+    return movie_info
+
+   
+
+
+def getMovieList():
+    top_movies = []
+    movies_html = []
+
+    page = requests.get('https://www.imdb.com/chart/top/?ref_=nv_mv_250')
+    soup = BeautifulSoup(page.content, features="html.parser")
+
+    """
+    movies_html = soup.find('tbody', class_='lister-list').find_all('a')['href']
+    for movie in movies_html:
+        m = movie.text
+        top_movies.append(m)
+    
+        if m[0].isalpha():
+            top_movies.append(m)
+        print(m)
+    """
+    
+    for a in soup.find('tbody', class_='lister-list').find_all('a', href=True): 
+        if a.text: 
+            movies_html.append('https://www.imdb.com' + a['href'])
+
+    for i in movies_html:
+        if i not in top_movies:
+            top_movies.append(i)
+    
+    return top_movies
 
 # Prompts user for a movie link
 print('Welcome to the IMDB Scraper!')
 URLs = []
 movie = ''
+movie_info = []
 
+top_movies = getMovieList()
+
+"""
 print('Enter the IMDB URL(s) of your movies. Enter "exit" to finish: ')
 while(movie != 'exit'):
     movie = input()
@@ -88,10 +139,15 @@ while(movie != 'exit'):
         break
 
     URLs.append(movie)
-
+"""
 # Calls method to get info about the movie(s)
-for links in URLs:
-    get_movie_info(links)
+for links in top_movies:
+    movie_info.append(get_movie_info(links))
+
+
+with open('top_movies.txt', 'w') as filewriter:
+    for link in movie_info:
+        filewriter.write('%s\n' % link)
 
 
 # Movies to test
