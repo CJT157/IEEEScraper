@@ -1,7 +1,10 @@
+import java.io.FileNotFoundException;
+
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
@@ -55,7 +58,11 @@ public class GUI extends Application{
 		Button openButton = new Button("Enter");
 		openButton.setOnAction(e -> {
 			GUI.primaryStage.setScene(loadingScene);
-			movieSuggestion.loadMovieInfo();
+			try {
+				movieSuggestion.loadMovieInfo();
+			} catch (FileNotFoundException e1) {
+				e1.printStackTrace();
+			}
 			GUI.primaryStage.setScene(mainScene);
 			});
 		grid.add(openButton, 0, 1);
@@ -71,7 +78,15 @@ public class GUI extends Application{
 		grid.setVgap(10);
 
 		Label loadingLabel = new Label("IEEE IMDB Scraper");
-		grid.add(loadingLabel, 0, 0);
+		grid.add(loadingLabel, 1, 0);
+
+		ComboBox genre1 = new ComboBox<String>();
+		ComboBox genre2 = new ComboBox<String>();
+		ComboBox genre3 = new ComboBox<String>();
+
+		grid.add(genre1, 0, 1);
+		grid.add(genre2, 1, 1);
+		grid.add(genre3, 2, 1);
 
 		return new Scene(grid);
 	}

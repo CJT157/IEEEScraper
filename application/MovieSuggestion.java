@@ -1,4 +1,6 @@
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
 
 public class MovieSuggestion {
     
@@ -17,8 +19,12 @@ public class MovieSuggestion {
 
     private MovieSuggestion() {}
 
-    public void loadMovieInfo() {
+    public void loadMovieInfo() throws FileNotFoundException {
         File movieList = new File("movieList.txt");
+        Scanner movieScanner = new Scanner(movieList);
+        while (movieScanner.hasNextLine()) {
+            //read stuff here
+        }
         // Load movie file and create list of movies from it
     }
 
