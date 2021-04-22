@@ -24,7 +24,7 @@ public class MovieSuggestion {
         File movieList = new File(userDirectory + "/top_movies.txt");
         Scanner movieScanner = new Scanner(movieList);
         while (movieScanner.hasNextLine()) {
-            //read stuff here
+            String info = movieScanner.nextLine();
         }
         // Load movie file and create list of movies from it
     }
