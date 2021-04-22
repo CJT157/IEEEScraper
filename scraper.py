@@ -151,7 +151,7 @@ for links in top_movies:
 
 with open('application/top_movies.txt', 'w') as filewriter:
     for link in movie_info:
-        filewriter.write('%s\n' % link)
+        filewriter.write('%s\n' % item)
 
 
 # Movies to test
