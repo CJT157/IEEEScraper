@@ -1,4 +1,5 @@
 import java.io.FileNotFoundException;
+import java.text.ParseException;
 
 import javafx.application.Application;
 import javafx.geometry.Pos;
@@ -60,7 +61,7 @@ public class GUI extends Application{
 			GUI.primaryStage.setScene(loadingScene);
 			try {
 				movieSuggestion.loadMovieInfo();
-			} catch (FileNotFoundException e1) {
+			} catch (FileNotFoundException | ParseException e1) {
 				e1.printStackTrace();
 			}
 			GUI.primaryStage.setScene(mainScene);

@@ -150,9 +150,9 @@ for links in top_movies:
 
 
 with open('application/top_movies.txt', 'w') as filewriter:
-    for link in movie_info:
-        filewriter.write('%s\n' % item)
-
+    for line in movie_info:
+        for entry in line:
+            filewriter.write('%s\n' % entry)
 
 # Movies to test
 # Shutter Island: https://www.imdb.com/title/tt1130884/?ref_=fn_al_tt_1
