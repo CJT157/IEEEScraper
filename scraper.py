@@ -30,7 +30,6 @@ def get_movie_info(URL):
     for title_word in title:
         actual_title += title_word + " "
     title = actual_title.strip()
-    print(title)
 
     plot = soup.find('div', class_="plot_summary")
     director = plot.find('div', class_="credit_summary_item").find('a')

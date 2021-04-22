@@ -5,6 +5,7 @@ import java.util.Scanner;
 public class MovieSuggestion {
     
     private static MovieSuggestion movieSuggestion;
+    private static String userDirectory = System.getProperty("user.dir");
 
     /**
      * Singleton method to make sure the movieSuggestion object is consistent wherever we use it
@@ -20,7 +21,7 @@ public class MovieSuggestion {
     private MovieSuggestion() {}
 
     public void loadMovieInfo() throws FileNotFoundException {
-        File movieList = new File("top_movie.txt");
+        File movieList = new File(userDirectory + "/top_movies.txt");
         Scanner movieScanner = new Scanner(movieList);
         while (movieScanner.hasNextLine()) {
             //read stuff here
