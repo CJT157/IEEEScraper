@@ -7,13 +7,13 @@ public class Movie {
     private Date release;
     private String plot;
     private double rating;
-    private String poster;
+    private URL poster;
     private ArrayList<String> genres;
     private ArrayList<String> directors;
     private ArrayList<String> stars;
 
     public Movie(String title, Date release, String plot,
-            double rating, String poster, ArrayList<String> genres,
+            double rating, URL poster, ArrayList<String> genres,
             ArrayList<String> directors, ArrayList<String> stars) 
     {
         this.title = title;

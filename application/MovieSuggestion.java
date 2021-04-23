@@ -1,5 +1,6 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -27,7 +28,7 @@ public class MovieSuggestion {
 
     private MovieSuggestion() {}
 
-    public void loadMovieInfo() throws FileNotFoundException, ParseException {
+    public void loadMovieInfo() throws FileNotFoundException, ParseException, MalformedURLException {
         File movieList = new File(userDirectory + "/top_movies.txt");
         Scanner movieScanner = new Scanner(movieList);
         while (movieScanner.hasNextLine()) {
@@ -35,7 +36,7 @@ public class MovieSuggestion {
             Date release = new Date();
             String plot = "";
             double rating = 0;
-            String poster = "";
+            URL poster = new URL("www.google.com");
             ArrayList<String> genres = new ArrayList<String>();
             ArrayList<String> directors = new ArrayList<String>();
             ArrayList<String> stars = new ArrayList<String>();
@@ -49,10 +50,16 @@ public class MovieSuggestion {
                         break;
                     case 2:
                     //genres
-                    break;
+                        String genreList = movieScanner.nextLine().replaceAll("[", " ").replaceAll("]", " ").replaceAll("'", "").trim();
+                        String[] genresStrings = genreList.split(", ");
+                        for (String item : genresStrings) {
+                            genres.add(item);
+                        }
+                        break;
                     case 3:
                     //directors
-                        rating = Double.parseDouble(movieScanner.nextLine());
+                        String directorList = movieScanner.nextLine().replaceAll("[", " ").replaceAll("]", " ").replaceAll("'", "").trim();
+                        directors.add(directorList);
                         break;
                     case 4:
                     //plot
@@ -60,14 +67,19 @@ public class MovieSuggestion {
                         break;
                     case 5:
                     //rating
-                        
+                        rating = Double.parseDouble(movieScanner.nextLine());
                         break;
                     case 6:
                     //actors
+                        String actorList = movieScanner.nextLine().replaceAll("[", " ").replaceAll("]", " ").replaceAll("'", "").trim();
+                        String[] actorStrings = actorList.split(", ");
+                        for (String item : actorStrings) {
+                            stars.add(item);
+                        }
                         break;
                     case 7:
                     //poster
-                        poster = movieScanner.nextLine();
+                        poster = new URL(movieScanner.nextLine());
                         break;
                 }
             }
