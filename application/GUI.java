@@ -95,13 +95,13 @@ public class GUI extends Application{
 		genre3.getItems().addAll("Drama", "Crime", "Action", "Biography", "History", "Adventure", "Western", "Romance", "Sci-Fi", "Fantasy", "Mystery", "Thriller", "Family", "War", "Animation", "Music", "Comedy", "Film-Noir", "Musical", "Sport");
 
 		genre1.setOnAction(e -> {
-			getMatchingMovies(genre1.getValue(), genre2.getValue(), genre3.getValue());
+			movieSuggestion.getMatchingMovies(genre1.getValue(), genre2.getValue(), genre3.getValue());
 			});
 		genre1.setOnAction(e -> {
-			getMatchingMovies(genre1.getValue(), genre2.getValue(), genre3.getValue());
+			movieSuggestion.getMatchingMovies(genre1.getValue(), genre2.getValue(), genre3.getValue());
 			});
 		genre1.setOnAction(e -> {
-			getMatchingMovies(genre1.getValue(), genre2.getValue(), genre3.getValue());
+			movieSuggestion.getMatchingMovies(genre1.getValue(), genre2.getValue(), genre3.getValue());
 			});
 
 		grid.add(genre1, 0, 1);

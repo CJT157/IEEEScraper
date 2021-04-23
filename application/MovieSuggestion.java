@@ -90,25 +90,48 @@ public class MovieSuggestion {
     public ArrayList<Movie> getMatchingMovies(String genre1, String genre2, String genre3){
         ArrayList<Movie> matchingMovies = new ArrayList<Movie>();
         ArrayList<String> validGenres = new ArrayList<String>();
+        int numGenres = 0;
 
-        if(!genre1.equals("")){
-            validGenres.add(genre1);
+        if (genre1 != null) {
+            if(!genre1.equals("")){
+                validGenres.add(genre1);
+                numGenres++;
+            }
         }
-        if (!genre2.equals("")) {
-            validGenres.add(genre2);
+        if (genre2 != null) {
+            if (!genre2.equals("")) {
+                validGenres.add(genre2);
+                numGenres++;
+            }
         }
-        if (!genre3.equals(genre3)) {
-            validGenres.add(genre3);
+        if (genre3 != null) {
+            if (!genre3.equals("")) {
+                validGenres.add(genre3);
+                numGenres++;
+            }
         }
 
         for (Movie m : movies) {
+            int genreScore = 0;
+            ArrayList<String> tempGenres = validGenres;
             for (String genre : m.getGenres()) {
-                for(int i = 0; i < validGenres.size(); i++){
-                    if (genre.equals(validGenres.get(i))) {
-                        
+                for (String vGenre : tempGenres) {
+                    if (genre.equals(vGenre)) {
+                        genreScore++;
+                        tempGenres.remove(vGenre);
+                        System.out.println("hey we removed " + vGenre);
                     }
                 }
             }
+            System.out.println("hmm");
+            if (genreScore == numGenres) {
+                matchingMovies.add(m);
+                System.out.println("please print");
+            }
+        }
+
+        for (Movie m : matchingMovies) {
+            System.out.println(m);
         }
 
         return matchingMovies;

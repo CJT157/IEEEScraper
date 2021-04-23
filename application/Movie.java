@@ -26,6 +26,12 @@ public class Movie {
         this.stars = stars;
     }
 
+    @Override
+    public String toString() {
+        return "Movie [directors=" + directors + ", genres=" + genres + ", plot=" + plot + ", poster=" + poster
+                + ", rating=" + rating + ", release=" + release + ", stars=" + stars + ", title=" + title + "]";
+    }
+
     public String getTitle() {
         return title;
     }
