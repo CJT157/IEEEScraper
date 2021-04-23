@@ -87,6 +87,33 @@ public class MovieSuggestion {
         movieScanner.close();
     }
 
+    public ArrayList<Movie> getMatchingMovies(String genre1, String genre2, String genre3){
+        ArrayList<Movie> matchingMovies = new ArrayList<Movie>();
+        ArrayList<String> validGenres = new ArrayList<String>();
+
+        if(!genre1.equals("")){
+            validGenres.add(genre1);
+        }
+        if (!genre2.equals("")) {
+            validGenres.add(genre2);
+        }
+        if (!genre3.equals(genre3)) {
+            validGenres.add(genre3);
+        }
+
+        for (Movie m : movies) {
+            for (String genre : m.getGenres()) {
+                for(int i = 0; i < validGenres.size(); i++){
+                    if (genre.equals(validGenres.get(i))) {
+                        
+                    }
+                }
+            }
+        }
+
+        return matchingMovies;
+    } 
+
 
 }
  
