@@ -6,7 +6,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.Scanner;
 
 public class MovieSuggestion {
@@ -85,7 +84,7 @@ public class MovieSuggestion {
             }
             movies.add(new Movie(title, release, plot, rating, poster, genres, directors, stars));
         }
-        
+        movieScanner.close();
     }
 
 

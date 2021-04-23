@@ -82,9 +82,13 @@ public class GUI extends Application{
 		Label loadingLabel = new Label("IEEE IMDB Scraper");
 		grid.add(loadingLabel, 1, 0);
 
-		ComboBox genre1 = new ComboBox<String>();
-		ComboBox genre2 = new ComboBox<String>();
-		ComboBox genre3 = new ComboBox<String>();
+		ComboBox<String> genre1 = new ComboBox<String>();
+		ComboBox<String> genre2 = new ComboBox<String>();
+		ComboBox<String> genre3 = new ComboBox<String>();
+
+		genre1.getItems().addAll("Drama", "Crime", "Action", "Biography", "History", "Adventure", "Western", "Romance", "Sci-Fi", "Fantasy", "Mystery", "Thriller", "Family", "War", "Animation", "Music", "Comedy", "Film-Noir", "Musical", "Sport");
+		genre2.getItems().addAll("Drama", "Crime", "Action", "Biography", "History", "Adventure", "Western", "Romance", "Sci-Fi", "Fantasy", "Mystery", "Thriller", "Family", "War", "Animation", "Music", "Comedy", "Film-Noir", "Musical", "Sport");
+		genre3.getItems().addAll("Drama", "Crime", "Action", "Biography", "History", "Adventure", "Western", "Romance", "Sci-Fi", "Fantasy", "Mystery", "Thriller", "Family", "War", "Animation", "Music", "Comedy", "Film-Noir", "Musical", "Sport");
 
 		grid.add(genre1, 0, 1);
 		grid.add(genre2, 1, 1);
