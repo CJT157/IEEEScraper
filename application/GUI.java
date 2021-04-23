@@ -1,8 +1,12 @@
+import java.beans.EventHandler;
 import java.io.FileNotFoundException;
 import java.net.MalformedURLException;
 import java.text.ParseException;
 
+import javax.swing.Action;
+
 import javafx.application.Application;
+import javafx.event.Event;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -89,6 +93,16 @@ public class GUI extends Application{
 		genre1.getItems().addAll("Drama", "Crime", "Action", "Biography", "History", "Adventure", "Western", "Romance", "Sci-Fi", "Fantasy", "Mystery", "Thriller", "Family", "War", "Animation", "Music", "Comedy", "Film-Noir", "Musical", "Sport");
 		genre2.getItems().addAll("Drama", "Crime", "Action", "Biography", "History", "Adventure", "Western", "Romance", "Sci-Fi", "Fantasy", "Mystery", "Thriller", "Family", "War", "Animation", "Music", "Comedy", "Film-Noir", "Musical", "Sport");
 		genre3.getItems().addAll("Drama", "Crime", "Action", "Biography", "History", "Adventure", "Western", "Romance", "Sci-Fi", "Fantasy", "Mystery", "Thriller", "Family", "War", "Animation", "Music", "Comedy", "Film-Noir", "Musical", "Sport");
+
+		genre1.setOnAction(e -> {
+			getMatchingMovies(genre1.getValue(), genre2.getValue(), genre3.getValue());
+			});
+		genre1.setOnAction(e -> {
+			getMatchingMovies(genre1.getValue(), genre2.getValue(), genre3.getValue());
+			});
+		genre1.setOnAction(e -> {
+			getMatchingMovies(genre1.getValue(), genre2.getValue(), genre3.getValue());
+			});
 
 		grid.add(genre1, 0, 1);
 		grid.add(genre2, 1, 1);
