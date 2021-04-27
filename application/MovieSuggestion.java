@@ -35,21 +35,22 @@ public class MovieSuggestion {
             Date release = new Date();
             String plot = "";
             double rating = 0;
-            URL poster = new URL("www.google.com");
+            URL poster;
             ArrayList<String> genres = new ArrayList<String>();
             ArrayList<String> directors = new ArrayList<String>();
             ArrayList<String> stars = new ArrayList<String>();
             for (int i = 0; i < 8; i++) {
+                String info = movieScanner.nextLine();
                 switch (i) {
                     case 0:
-                        title = movieScanner.nextLine();
+                        title = info;
                         break;
                     case 1:
-                        release = new SimpleDateFormat("yyyy-dd-MM").parse(movieScanner.nextLine());
+                        release = new SimpleDateFormat("yyyy-dd-MM").parse(info);
                         break;
                     case 2:
                     //genres
-                        String genreList = movieScanner.nextLine().replaceAll("[", " ").replaceAll("]", " ").replaceAll("'", "").trim();
+                        String genreList = info.replace("[", "").replace("]", "").replace("'", "").trim();
                         String[] genresStrings = genreList.split(", ");
                         for (String item : genresStrings) {
                             genres.add(item);
@@ -57,20 +58,20 @@ public class MovieSuggestion {
                         break;
                     case 3:
                     //directors
-                        String directorList = movieScanner.nextLine().replaceAll("[", " ").replaceAll("]", " ").replaceAll("'", "").trim();
+                        String directorList = info.replace("[", "").replace("]", "").replace("'", "").trim();
                         directors.add(directorList);
                         break;
                     case 4:
                     //plot
-                        plot = movieScanner.nextLine();
+                        plot = info;
                         break;
                     case 5:
                     //rating
-                        rating = Double.parseDouble(movieScanner.nextLine());
+                        rating = Double.parseDouble(info);
                         break;
                     case 6:
                     //actors
-                        String actorList = movieScanner.nextLine().replaceAll("[", " ").replaceAll("]", " ").replaceAll("'", "").trim();
+                        String actorList = info.replace("[", "").replace("]", "").replace("'", "").trim();
                         String[] actorStrings = actorList.split(", ");
                         for (String item : actorStrings) {
                             stars.add(item);
@@ -78,13 +79,18 @@ public class MovieSuggestion {
                         break;
                     case 7:
                     //poster
-                        poster = new URL(movieScanner.nextLine());
+                        poster = new URL(info);
                         break;
                 }
             }
-            movies.add(new Movie(title, release, plot, rating, poster, genres, directors, stars));
+            System.out.println(title);
+            movies.add(new Movie(title, release, plot, rating, genres, directors, stars));
         }
         movieScanner.close();
+    }
+
+    public static ArrayList<Movie> getMovies() {
+        return movies;
     }
 
     public ArrayList<Movie> getMatchingMovies(String genre1, String genre2, String genre3){
@@ -115,28 +121,20 @@ public class MovieSuggestion {
             int genreScore = 0;
             ArrayList<String> tempGenres = validGenres;
             for (String genre : m.getGenres()) {
+                System.out.println(genre);
                 for (String vGenre : tempGenres) {
                     if (genre.equals(vGenre)) {
                         genreScore++;
-                        tempGenres.remove(vGenre);
-                        System.out.println("hey we removed " + vGenre);
                     }
                 }
             }
-            System.out.println("hmm");
             if (genreScore == numGenres) {
                 matchingMovies.add(m);
-                System.out.println("please print");
             }
         }
 
-        for (Movie m : matchingMovies) {
-            System.out.println(m);
-        }
-
         return matchingMovies;
-    } 
-
+    }
 
 }
  

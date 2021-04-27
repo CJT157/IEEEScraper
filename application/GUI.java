@@ -12,6 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
@@ -90,23 +91,32 @@ public class GUI extends Application{
 		ComboBox<String> genre2 = new ComboBox<String>();
 		ComboBox<String> genre3 = new ComboBox<String>();
 
-		genre1.getItems().addAll("Drama", "Crime", "Action", "Biography", "History", "Adventure", "Western", "Romance", "Sci-Fi", "Fantasy", "Mystery", "Thriller", "Family", "War", "Animation", "Music", "Comedy", "Film-Noir", "Musical", "Sport");
-		genre2.getItems().addAll("Drama", "Crime", "Action", "Biography", "History", "Adventure", "Western", "Romance", "Sci-Fi", "Fantasy", "Mystery", "Thriller", "Family", "War", "Animation", "Music", "Comedy", "Film-Noir", "Musical", "Sport");
-		genre3.getItems().addAll("Drama", "Crime", "Action", "Biography", "History", "Adventure", "Western", "Romance", "Sci-Fi", "Fantasy", "Mystery", "Thriller", "Family", "War", "Animation", "Music", "Comedy", "Film-Noir", "Musical", "Sport");
+		genre1.getItems().addAll("", "Drama", "Crime", "Action", "Biography", "History", "Adventure", "Western", "Romance", "Sci-Fi", "Fantasy", "Mystery", "Thriller", "Family", "War", "Animation", "Music", "Comedy", "Film-Noir", "Musical", "Sport");
+		genre2.getItems().addAll("", "Drama", "Crime", "Action", "Biography", "History", "Adventure", "Western", "Romance", "Sci-Fi", "Fantasy", "Mystery", "Thriller", "Family", "War", "Animation", "Music", "Comedy", "Film-Noir", "Musical", "Sport");
+		genre3.getItems().addAll("", "Drama", "Crime", "Action", "Biography", "History", "Adventure", "Western", "Romance", "Sci-Fi", "Fantasy", "Mystery", "Thriller", "Family", "War", "Animation", "Music", "Comedy", "Film-Noir", "Musical", "Sport");
+
+		ListView<Movie> movieList = new ListView<Movie>();
+
+		movieList.getItems().addAll(MovieSuggestion.getMovies());
 
 		genre1.setOnAction(e -> {
-			movieSuggestion.getMatchingMovies(genre1.getValue(), genre2.getValue(), genre3.getValue());
+			movieList.getItems().remove(0, movieList.getItems().size());
+			movieList.getItems().addAll(movieSuggestion.getMatchingMovies(genre1.getValue(), genre2.getValue(), genre3.getValue()));
 			});
-		genre1.setOnAction(e -> {
-			movieSuggestion.getMatchingMovies(genre1.getValue(), genre2.getValue(), genre3.getValue());
+		genre2.setOnAction(e -> {
+			movieList.getItems().remove(0, movieList.getItems().size());
+			movieList.getItems().addAll(movieSuggestion.getMatchingMovies(genre1.getValue(), genre2.getValue(), genre3.getValue()));
 			});
-		genre1.setOnAction(e -> {
-			movieSuggestion.getMatchingMovies(genre1.getValue(), genre2.getValue(), genre3.getValue());
+		genre3.setOnAction(e -> {
+			movieList.getItems().remove(0, movieList.getItems().size());
+			movieList.getItems().addAll(movieSuggestion.getMatchingMovies(genre1.getValue(), genre2.getValue(), genre3.getValue()));
 			});
 
 		grid.add(genre1, 0, 1);
 		grid.add(genre2, 1, 1);
 		grid.add(genre3, 2, 1);
+
+		grid.add(movieList, 1, 2);
 
 		return new Scene(grid);
 	}

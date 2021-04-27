@@ -13,14 +13,13 @@ public class Movie {
     private ArrayList<String> stars;
 
     public Movie(String title, Date release, String plot,
-            double rating, URL poster, ArrayList<String> genres,
+            double rating, ArrayList<String> genres,
             ArrayList<String> directors, ArrayList<String> stars) 
     {
         this.title = title;
         this.release = release;
         this.plot = plot;
         this.rating = rating;
-        this.poster = poster;
         this.genres = genres;
         this.directors = directors;
         this.stars = stars;
@@ -28,8 +27,7 @@ public class Movie {
 
     @Override
     public String toString() {
-        return "Movie [directors=" + directors + ", genres=" + genres + ", plot=" + plot + ", poster=" + poster
-                + ", rating=" + rating + ", release=" + release + ", stars=" + stars + ", title=" + title + "]";
+        return title;
     }
 
     public String getTitle() {
