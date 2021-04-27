@@ -84,16 +84,22 @@ public class GUI extends Application{
 		grid.setHgap(10);
 		grid.setVgap(10);
 
+		GridPane dropdownPane = new GridPane();
+		grid.setPrefSize(1280, 720);
+		grid.setAlignment(Pos.CENTER);
+		grid.setHgap(10);
+		grid.setVgap(10);
+
 		Label loadingLabel = new Label("IEEE IMDB Scraper");
-		grid.add(loadingLabel, 1, 0);
+		grid.add(loadingLabel, 0, 0);
 
 		ComboBox<String> genre1 = new ComboBox<String>();
 		ComboBox<String> genre2 = new ComboBox<String>();
 		ComboBox<String> genre3 = new ComboBox<String>();
 
-		genre1.getItems().addAll("", "Drama", "Crime", "Action", "Biography", "History", "Adventure", "Western", "Romance", "Sci-Fi", "Fantasy", "Mystery", "Thriller", "Family", "War", "Animation", "Music", "Comedy", "Film-Noir", "Musical", "Sport");
-		genre2.getItems().addAll("", "Drama", "Crime", "Action", "Biography", "History", "Adventure", "Western", "Romance", "Sci-Fi", "Fantasy", "Mystery", "Thriller", "Family", "War", "Animation", "Music", "Comedy", "Film-Noir", "Musical", "Sport");
-		genre3.getItems().addAll("", "Drama", "Crime", "Action", "Biography", "History", "Adventure", "Western", "Romance", "Sci-Fi", "Fantasy", "Mystery", "Thriller", "Family", "War", "Animation", "Music", "Comedy", "Film-Noir", "Musical", "Sport");
+		genre1.getItems().addAll("", "Drama", "Crime", "Action", "Biography", "History", "Adventure", "Western", "Romance", "Sci-Fi", "Fantasy", "Mystery", "Thriller", "Family", "War", "Animation", "Music", "Comedy", "Film-Noir", "Musical", "Sport", "Horror");
+		genre2.getItems().addAll("", "Drama", "Crime", "Action", "Biography", "History", "Adventure", "Western", "Romance", "Sci-Fi", "Fantasy", "Mystery", "Thriller", "Family", "War", "Animation", "Music", "Comedy", "Film-Noir", "Musical", "Sport", "Horror");
+		genre3.getItems().addAll("", "Drama", "Crime", "Action", "Biography", "History", "Adventure", "Western", "Romance", "Sci-Fi", "Fantasy", "Mystery", "Thriller", "Family", "War", "Animation", "Music", "Comedy", "Film-Noir", "Musical", "Sport", "Horror");
 
 		ListView<Movie> movieList = new ListView<Movie>();
 		movieList.setMinWidth(400);
@@ -113,11 +119,13 @@ public class GUI extends Application{
 			movieList.getItems().addAll(movieSuggestion.getMatchingMovies(genre1.getValue(), genre2.getValue(), genre3.getValue()));
 			});
 
-		grid.add(genre1, 0, 1);
-		grid.add(genre2, 1, 1);
-		grid.add(genre3, 2, 1);
+		dropdownPane.add(genre1, 0, 0);
+		dropdownPane.add(genre2, 1, 0);
+		dropdownPane.add(genre3, 2, 0);
 
-		grid.add(movieList, 1, 2);
+		grid.add(dropdownPane, 0, 1);
+
+		grid.add(movieList, 0, 2);
 
 		return new Scene(grid);
 	}
