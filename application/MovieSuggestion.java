@@ -83,7 +83,6 @@ public class MovieSuggestion {
                         break;
                 }
             }
-            System.out.println(title);
             movies.add(new Movie(title, release, plot, rating, genres, directors, stars));
         }
         movieScanner.close();
@@ -121,7 +120,6 @@ public class MovieSuggestion {
             int genreScore = 0;
             ArrayList<String> tempGenres = validGenres;
             for (String genre : m.getGenres()) {
-                System.out.println(genre);
                 for (String vGenre : tempGenres) {
                     if (genre.equals(vGenre)) {
                         genreScore++;

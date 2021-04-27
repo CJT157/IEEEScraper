@@ -96,6 +96,7 @@ public class GUI extends Application{
 		genre3.getItems().addAll("", "Drama", "Crime", "Action", "Biography", "History", "Adventure", "Western", "Romance", "Sci-Fi", "Fantasy", "Mystery", "Thriller", "Family", "War", "Animation", "Music", "Comedy", "Film-Noir", "Musical", "Sport");
 
 		ListView<Movie> movieList = new ListView<Movie>();
+		movieList.setMinWidth(400);
 
 		movieList.getItems().addAll(MovieSuggestion.getMovies());
 
